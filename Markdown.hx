@@ -37,7 +37,7 @@ class Markdown
 	}
 	#end
 
-	public static function markdownToBlocks(markdown:String):blocks:Array<Node>{
+	public static function markdownToBlocks(markdown:String):Array<Node>{
 		// create document
 		var document = new Document();
 		try
