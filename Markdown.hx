@@ -54,6 +54,7 @@ class Markdown
 		catch (e:Dynamic)
 		{
 			trace(e);
+			return new Array<Node>();
 		}
 	}
 
