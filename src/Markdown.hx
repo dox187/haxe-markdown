@@ -37,9 +37,11 @@ class Markdown
 	}
 	#end
 
-	public static function markdownToBlocks(markdown:String):blocks:Array<Node>{
+	public static function markdownToHtml(markdown:String):String
+	{
 		// create document
 		var document = new Document();
+
 		try
 		{
 			// replace windows line endings with unix, and split
@@ -49,17 +51,18 @@ class Markdown
 			document.parseRefLinks(lines);
 
 			// parse ast
-			return document.parseLines(lines);
+			var blocks = document.parseLines(lines);
+			return renderHtml(blocks);
 		}
 		catch (e:Dynamic)
 		{
-			trace(e);
+			return '<pre>$e</pre>';
 		}
 	}
 
-	public static function markdownToHtml(markdown:String):String
+	public static function renderHtml(blocks:Array<Node>):String
 	{
-		return new HtmlRenderer().render(markdownToBlocks(markdown));
+		return new HtmlRenderer().render(blocks);
 	}
 }
 
